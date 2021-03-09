@@ -46,7 +46,7 @@ exports.createUser = async (req, res) => {
       },
       (error, token) => {
         if (error) throw error;
-        res.json({ token });
+        res.json({ user });
       }
     );
   } catch (error) {
@@ -58,6 +58,11 @@ exports.createUser = async (req, res) => {
 exports.getUser = async (req, res) => {
   try {
     const users = await UserModel.find();
+    
+    if(!users){
+      res.json({msg: "There is no users"})
+      return;
+    }
     res.json({ users });
   } catch (error) {
     console.log(error);
