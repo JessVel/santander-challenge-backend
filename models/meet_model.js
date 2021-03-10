@@ -12,10 +12,15 @@ const MeetSchema = mongoose.Schema({
     trim: true,
     unique: true,
   },
-  asistance: {
-    type: Boolean,
-    default: false,
-  },
+  assistants: 
+    {
+      type: Array,
+      default: [],
+      emailAsistance: String,
+      confirmAsistance: {type:Boolean, default: false}
+    }
+  
+  ,
   create: {
     type: Date,
     default: Date.now(),

@@ -31,7 +31,7 @@ app.use(function (req, res, next) {
 app.use("/api/user", require("./routes/user_routes"));
 app.use("/api/auth", require("./routes/auth_routes"));
 app.use("/api/meet", require("./routes/meet_routes"));
-app.use("/api/vendor", require("./routes/vendor_routes"));
+app.use("/api/order", require("./routes/vendor_routes"));
 
 app.listen(PORT, () => {
   console.log(`Server running in ${PORT}`);

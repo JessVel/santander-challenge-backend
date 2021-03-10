@@ -1,23 +1,50 @@
 exports.getBeers = (req, res) => {
-  let beers;
+  let beers = 6;
+  let order;
   const {temp, person} = req.body;
 
   try {
     if (temp > 24) {
-      beers = 2 * person + person / 2;
-      res.json({msg: beers});
-      console.log(beers);
-      return;
+      const amount = person * 2;
+
+      if(amount <= beers){
+        order = Math.ceil(amount / beers + beers /2 )
+        res.json({msg:'Your order was successful', order})
+        return;
+      }
+      if(amount > beers){
+        order = Math.ceil(amount / beers + beers /2)
+        res.json({msg:'Your order was successful', order})
+        return;
+      }
     } else if (temp < 20) {
-      beers = 0.75 * person + person / 2;
-      res.json({msg: beers});
-      console.log(beers);
-      return;
+        const amount = person * 0.75
+
+        if(amount <= beers ){
+          order = Math.ceil(amount / beers)
+          res.json({msg:'Your order was successful', order})
+          return;
+        }
+        
+        if( amount > beers ){
+          order = Math.ceil(amount / beers); 
+          res.json({msg:'Your order was successful', order})
+          return;
+        }
+       
     } else {
-      beers = 1 * person + person / 2;
-      res.json({msg: beers});
-      console.log(beers);
-      return;
+      const amount = person;
+      if(amount <= beers){
+        order = beers;
+        res.json({msg:'Your order was successful', order})
+        return
+      }
+
+      if(amount > beers){
+        order = Math.ceil(amount / beers + beers /2);
+        res.json({msg:'Your order was successful', order})
+          return; 
+      }
     }
   } catch (error) {
     console.log(error);
