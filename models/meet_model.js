@@ -19,7 +19,6 @@ const MeetSchema = mongoose.Schema({
       emailAsistance: String,
       confirmAsistance: {type:Boolean, default: false}
     }
-  
   ,
   create: {
     type: Date,

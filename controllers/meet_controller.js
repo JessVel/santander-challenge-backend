@@ -7,6 +7,7 @@ exports.createMeet = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
+
   try {
     const meet = new MeetModel(req.body);
     await meet.save();
