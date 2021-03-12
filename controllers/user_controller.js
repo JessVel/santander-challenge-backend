@@ -24,6 +24,7 @@ exports.createUser = async (req, res) => {
 
     //Crear modelo con datos del usuario creado
     user = new UserModel(req.body);
+    console.log(user)
 
     //Hashear password
     const salt = await bcryptjs.genSalt(10);
@@ -46,12 +47,11 @@ exports.createUser = async (req, res) => {
       },
       (error, token) => {
         if (error) throw error;
-        res.json({ user });
+        res.json({ token });
       }
     );
   } catch (error) {
-    console.log(error);
-    res.status(400).json({ msg: "There's been an error. Try again later." });
+    res.status(400).json({msg: 'Hubo un error'});
   }
 };
 

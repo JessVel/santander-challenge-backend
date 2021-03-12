@@ -20,6 +20,12 @@ const MeetSchema = mongoose.Schema({
       confirmAsistance: {type:Boolean, default: false}
     }
   ,
+  temp:{
+    type: String,
+    require:false,
+    trim:true,
+  },
+
   create: {
     type: Date,
     default: Date.now(),
