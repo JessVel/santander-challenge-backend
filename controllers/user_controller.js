@@ -24,7 +24,7 @@ exports.createUser = async (req, res) => {
 
     //Crear modelo con datos del usuario creado
     user = new UserModel(req.body);
-    console.log(user)
+    console.log(user);
 
     //Hashear password
     const salt = await bcryptjs.genSalt(10);
@@ -51,16 +51,16 @@ exports.createUser = async (req, res) => {
       }
     );
   } catch (error) {
-    res.status(400).json({msg: 'Hubo un error'});
+    res.status(400).json({ msg: "Hubo un error" });
   }
 };
 
 exports.getUser = async (req, res) => {
   try {
     const users = await UserModel.find();
-    
-    if(!users){
-      res.json({msg: "There is no users"})
+
+    if (!users) {
+      res.json({ msg: "There is no users" });
       return;
     }
     res.json({ users });

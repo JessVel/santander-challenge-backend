@@ -12,18 +12,16 @@ const MeetSchema = mongoose.Schema({
     trim: true,
     unique: true,
   },
-  assistants: 
-    {
-      type: Array,
-      default: [],
-      emailAsistance: String,
-      confirmAsistance: {type:Boolean, default: false}
-    }
-  ,
-  temp:{
+  assistants: {
+    type: Array,
+    default: [],
+    emailAsistance: String,
+    confirmAsistance: { type: Boolean, default: false },
+  },
+  temp: {
     type: String,
-    require:false,
-    trim:true,
+    require: false,
+    trim: true,
   },
 
   create: {
