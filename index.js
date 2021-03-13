@@ -6,6 +6,9 @@ const app = express();
 
 connectDB();
 
+app.use(express.json({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
+
 app.use(
   cors({
     origin: "*",
@@ -15,8 +18,6 @@ app.use(
 );
 
 app.options("*", cors());
-
-app.use(express.json({ extended: true }));
 
 const PORT = process.env.PORT || 4000;
 

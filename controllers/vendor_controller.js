@@ -2,18 +2,19 @@ exports.getBeers = (req, res) => {
   let beers = 6;
   let order;
   const { temp, person } = req.body;
+  console.log(req.body);
 
   try {
     if (temp > 24) {
       const amount = person * 2;
 
       if (amount <= beers) {
-        order = Math.ceil(amount / beers + beers / 2);
+        order = Math.ceil(amount / beers + 0.5);
         res.json({ msg: "Your order was successful", order });
         return;
       }
       if (amount > beers) {
-        order = Math.ceil(amount / beers + beers / 2);
+        order = Math.ceil(amount / beers + 0.5);
         res.json({ msg: "Your order was successful", order });
         return;
       }
@@ -40,13 +41,13 @@ exports.getBeers = (req, res) => {
       }
 
       if (amount > beers) {
-        order = Math.ceil(amount / beers + beers / 2);
+        order = Math.ceil(amount / beers + 0.5);
         res.json({ msg: "Your order was successful", order });
         return;
       }
     }
   } catch (error) {
     console.log(error);
-    res.status(400).json({ msg: "There's been an error. Try again later." });
+    res.status(500).json({ msg: "There's been an error. Try again later." });
   }
 };
