@@ -10,7 +10,6 @@ const MeetSchema = mongoose.Schema({
     type: Date,
     require: true,
     trim: true,
-    unique: true,
   },
   assistants: {
     type: Array,

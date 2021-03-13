@@ -14,4 +14,6 @@ router.get("/", meetController.getMeets);
 //edit meet
 router.put("/:id", meetController.editMeet);
 
+router.delete("/:id", meetController.deleteMeet);
+
 module.exports = router;

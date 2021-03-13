@@ -41,6 +41,23 @@ exports.editMeet = async (req, res) => {
     res.json(meet);
   } catch (error) {
     console.log(error);
-    res.status(500).send("There's been an error");
+    res.status(400).send("There's been an error");
+  }
+};
+
+exports.deleteMeet = async (req, res) => {
+  try {
+    let meet = await MeetModel.findById(req.params.id);
+
+    if (!meet) {
+      res.status(404).json("The meeting does not exists");
+    }
+
+    await MeetModel.findByIdAndRemove({ _id: req.params.id });
+
+    res.json({ msg: "The meeting has been deleted!" });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send("There's been an error");
   }
 };
