@@ -1,5 +1,7 @@
 const MeetModel = require("../models/meet_model");
 const { validationResult } = require("express-validator");
+const transporter = require("../config/mailer");
+const moment = require("moment");
 
 exports.createMeet = async (req, res) => {
   const errors = validationResult(req);
@@ -11,10 +13,33 @@ exports.createMeet = async (req, res) => {
     const meet = new MeetModel(req.body);
     await meet.save();
     res.json({ meet });
-    console.log(meet);
   } catch (error) {
     console.log(error);
     res.status(500).send("There's been an error.");
+  }
+
+  //send email
+  try {
+    const infoAssis = [req.body.assistants];
+
+    console.log(infoAssis);
+
+    await infoAssis.forEach(item => {
+      transporter.sendMail({
+        from: process.env.EMAIL,
+        to: item,
+        subjet: "New meeting!🍻",
+        html: `
+        <h1>New meeting!</h1>
+        <h2>You been invited to ${req.body.name}</h2>
+        <p>On ${moment(req.body.date).format("L")}</p>
+        <p>The temperature that day will be <b>${req.body.temp} C°</b></p>
+        <footer>See you there!👋</footer>
+        `,
+      });
+    });
+  } catch (error) {
+    console.log(error);
   }
 };
 
