@@ -26,9 +26,9 @@ exports.createMeet = async (req, res) => {
 
     await infoAssis.forEach(item => {
       transporter.sendMail({
-        from: process.env.EMAIL,
+        from: `Hello!👋 ${process.env.EMAIL}`,
         to: item,
-        subjet: "New meeting!🍻",
+        subject: "New meeting!🍻",
         html: `
         <h1>New meeting!</h1>
         <h2>You been invited to ${req.body.name}</h2>
