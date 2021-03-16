@@ -5,7 +5,7 @@ exports.getBeers = (req, res) => {
 
   try {
     if (temp > 24) {
-      const amount = parseInt(person) * 2;
+      const amount = parseInt(person) * 2 + 1;
       if (amount > beers) {
         order = Math.ceil(amount / beers);
         return res.status(200).json({ msg: `Your order was successful, ${order}` });
@@ -13,7 +13,7 @@ exports.getBeers = (req, res) => {
         return res.status(200).json({ msg: `Your order was successful, ${order}` });
       }
     } else if (temp < 20) {
-      const amount = parseInt(person) * 0.75;
+      const amount = parseInt(person) * 0.75 + 1;
       if (amount > beers) {
         order = Math.ceil(amount / beers);
         return res.status(200).json({ msg: `Your order was successful, ${order}` });
