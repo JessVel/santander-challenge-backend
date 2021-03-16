@@ -1,49 +1,32 @@
 exports.getBeers = (req, res) => {
   let beers = 6;
-  let order;
+  let order = 1;
   const { temp, person } = req.body;
-  console.log(req.body);
 
   try {
     if (temp > 24) {
-      const amount = person * 2;
-
-      if (amount <= beers) {
-        order = Math.ceil(amount / beers + 0.5);
-        res.json({ msg: "Your order was successful", order });
-        return;
-      }
+      const amount = parseInt(person) * 2;
       if (amount > beers) {
-        order = Math.ceil(amount / beers + 0.5);
-        res.json({ msg: "Your order was successful", order });
-        return;
+        order = Math.ceil(amount / beers);
+        return res.status(200).json({ msg: `Your order was successful, ${order}` });
+      } else {
+        return res.status(200).json({ msg: `Your order was successful, ${order}` });
       }
     } else if (temp < 20) {
-      const amount = person * 0.75;
-
-      if (amount <= beers) {
-        order = Math.ceil(amount / beers);
-        res.json({ msg: "Your order was successful", order });
-        return;
-      }
-
+      const amount = parseInt(person) * 0.75;
       if (amount > beers) {
         order = Math.ceil(amount / beers);
-        res.json({ msg: "Your order was successful", order });
-        return;
+        return res.status(200).json({ msg: `Your order was successful, ${order}` });
+      } else {
+        return res.status(200).json({ msg: `Your order was successful, ${order}` });
       }
     } else {
-      const amount = person;
-      if (amount <= beers) {
-        order = beers;
-        res.json({ msg: "Your order was successful", order });
-        return;
-      }
-
+      const amount = parseInt(person) + 1;
       if (amount > beers) {
-        order = Math.ceil(amount / beers + 0.5);
-        res.json({ msg: "Your order was successful", order });
-        return;
+        order = Math.ceil(amount / beers);
+        return res.status(200).json({ msg: `Your order was successful, ${order}` });
+      } else {
+        return res.status(200).json({ msg: `Your order was successful, ${order}` });
       }
     }
   } catch (error) {
